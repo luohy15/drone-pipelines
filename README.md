@@ -8,13 +8,13 @@ Drone multiple pipeline management base on Flask and Jinja.
 - Management: modules, templates, and actual pipelines
 - Template syntax base on Jinja
 
-## Deploy
+## Run
 
 ```bash
-Python main.py
+python main.py
 ```
 
-and set address as drone's `DRONE_YAML_ENDPOINT`, see [Configuration Extension](https://docs.drone.io/extensions/configuration/)
+and pass address to drone's `DRONE_YAML_ENDPOINT`, see [Configuration Extension](https://docs.drone.io/extensions/configuration/)
 
 ## Management
 
