@@ -1,0 +1,7 @@
+template: template1
+name: name
+namespace: namespace
+commands:
+  - pwd
+  - ls
+  - echo "hello"
