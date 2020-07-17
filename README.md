@@ -1,14 +1,23 @@
 # Drone Pipelines
 
-drone multiple pipeline management base on Flask and Jinja
+Drone multiple pipeline management base on Flask and Jinja.
 
-## feature
+## Features
 
-- pipeline server as configuration extension
-- management: modules, templates, and actual pipelines
-- template syntax base on Jinja
+- Simple http server as configuration extension
+- Management: modules, templates, and actual pipelines
+- Template syntax base on Jinja
 
-## usage
+## Deploy
 
-- define your own modules, templates
-- render templates with values to actual pipeline
+```bash
+Python main.py
+```
+
+and set address as drone's `DRONE_YAML_ENDPOINT`, see [Configuration Extension](https://docs.drone.io/extensions/configuration/)
+
+## Management
+
+1. Define your own modules with Jinja
+2. Compose modules to template, see `templates` directory
+3. Write pipeline: choose one template, pass variable to modules

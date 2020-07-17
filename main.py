@@ -18,33 +18,36 @@ def get_pipeline(req):
     """
     redirect to pipeline file name
     base on definition in https://docs.drone.io/extensions/configuration/
+    then load pipeline and return
     """
     index = get_yaml("index.yml")
     slug = req["repo"]["slug"]
     if slug in index["pipeline"]:
         return get_yaml(f"pipelines/{index['pipeline'][slug]}.yml")
 
-def get_module_names(pipeline):
+def get_template(pipeline):
     """
-    get modules base on pipeline config
+    get template base on pipeline config
     """
     return get_yaml(f"templates/{pipeline['template']}.yml")
 
-def render_pipeline(pipeline, modules):
+def render_pipeline(pipeline, template):
     """
-    render modules by pipeline values
+    load module in template
+    render module by pipeline values
+    return render results
     """
     result = []
-    for module in modules:
-        result.append(yaml.safe_load(Template(get_content(f"modules/{module}.j2")).render(pipeline)))
+    for module in template:
+        result.append(yaml.safe_load(Template(get_content(f"modules/{module}.j2")).render(pipeline[module] if module in pipeline else {})))
     return result
 
 @app.route("/", methods=["POST"])
 def run():
     req = request.json
     pipeline = get_pipeline(req)
-    modules = get_module_names(pipeline)
-    result = render_pipeline(pipeline, modules)
+    template = get_template(pipeline)
+    result = render_pipeline(pipeline, template)
     if len(result) > 0:
         return {"data": yaml.safe_dump_all(result)}
     else:
