@@ -1,0 +1,6 @@
+name: busybox
+image: busybox
+commands:
+{{ range .commands }}
+  - {{ . }}
+{{ end }}

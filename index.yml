@@ -1,3 +1,3 @@
 pipeline:
-  "repo1": "pipeline1"
-  "repo2": "pipeline1"
+  repo1: pipeline1
+  repo2: pipeline1

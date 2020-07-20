@@ -1,1 +1,10 @@
 template: template1
+head:
+  name: pipeline1
+meta:
+  name: default
+busybox:
+  commands:
+    - pwd
+    - ls
+    - echo "hello"
